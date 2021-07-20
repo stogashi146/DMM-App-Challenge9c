@@ -1,0 +1,28 @@
+<table class='table'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>グループ名</th>
+      <th>紹介文</th>
+      <th>メンバー数</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% groups.each do |group| %>
+      <tr>
+        <td><%= attachment_image_tag(group, :group_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+        <td><%= group.name %></td>
+        <td><%= group.introduction %></td>
+        <td><%= group.users.count %></td>
+        <td>
+          <% if group.orner_id == current_user.id %>
+              <%= link_to "edit",edit_user_group_path(group),class:"btn btn-info btn-sm" %>
+          <% end %>
+        </td>
+        <td><%= link_to 'Show', user_group_path(group) %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
