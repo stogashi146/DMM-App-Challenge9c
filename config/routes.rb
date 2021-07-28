@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get "search" => "searches#search"
   resources :user_groups do
     get "join" => "user_groups#join"
+    get "mail" => "user_groups#mail"
+    post "mail_send" => "user_groups#send"
   end
 
 end

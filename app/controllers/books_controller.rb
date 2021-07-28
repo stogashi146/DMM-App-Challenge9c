@@ -21,6 +21,7 @@ class BooksController < ApplicationController
   def index
     # @books = Book.left_joins(:favorites).group(:book_id).order("count(user_id)desc")
     @books = Book.all
+    UserMailer.welcome_email.deliver_later
     # ソート機能
     @method = "new"
     @method = params[:method]

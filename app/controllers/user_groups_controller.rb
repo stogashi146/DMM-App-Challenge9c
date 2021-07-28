@@ -55,6 +55,15 @@ class UserGroupsController < ApplicationController
     redirect_to user_groups_path
   end
 
+  def mail
+    group = UserGroup.find(params[:user_group_id])
+    @member = group.users
+    @mail = Book.new
+    binding.pry
+  end
+
+  def mail_send
+  end
 
   private
   def group_params
