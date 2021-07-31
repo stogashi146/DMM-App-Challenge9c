@@ -1,4 +1,4 @@
-<table class='table'>
+<table class='table table-hover'>
   <thead>
     <tr>
       <th>image</th>
@@ -8,7 +8,7 @@
   </thead>
   <tbody>
     <% users.each do |user| %>
-      <tr>
+      <tr data-link="<%= user_path(user) %>">
         <td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
         <td><%= user.name %></td>
         <td>フォロー数：<%= user.followings.count %></td>
@@ -28,3 +28,9 @@
     <% end %>
   </tbody>
 </table>
+
+<script>
+  $("tr[data-link]").click(function() {
+  window.location = $(this).data("link")
+})
+</script>
