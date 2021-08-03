@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 	before_action :search_for
 
   def search_for
-    @q = Book.ransack(params[:q])
+    @q = Book.includes(:user).ransack(params[:q])
     @books = @q.result(distinct: true)
   end
 
