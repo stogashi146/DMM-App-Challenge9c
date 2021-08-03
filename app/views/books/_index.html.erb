@@ -2,14 +2,12 @@
   <thead>
     <tr>
       <th></th>
-      <th>Title</th>
-      <th>Opinion</th>
-      <th colspan="3"></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= sort_link(@q, :title, "Title") %></th>
+      <th><%= sort_link(@q, :body, "Opinion") %></th>
+      <th><%= sort_link(@q, :favorites_user_id, "いいね") %></th>
+      <th><%= sort_link(@q, :post_comments_comment, "コメント") %></th>
+      <th><%= sort_link(@q, :rate, "評価") %></th>
+      <th><%= sort_link(@q, :view_counts_user_id, "閲覧数") %></th>
     </tr>
   </thead>
   <tbody>

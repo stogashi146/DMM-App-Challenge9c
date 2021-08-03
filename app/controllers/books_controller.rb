@@ -19,8 +19,7 @@ class BooksController < ApplicationController
   end
 
   def index
-    @q = Book.ransack(params[:q])
-    @books = @q.result(distinct: true)
+
 
 
     # ソート機能

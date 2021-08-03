@@ -1,6 +1,13 @@
 class ApplicationController < ActionController::Base
   # before_action :authenticate_user!,except: [:top,:about]
 	before_action :configure_permitted_parameters, if: :devise_controller?
+	before_action :search_for
+
+  def search_for
+    @q = Book.ransack(params[:q])
+    @books = @q.result(distinct: true)
+  end
+
 
   def after_sign_in_path_for(resource)
     current_user
