@@ -19,26 +19,27 @@ class BooksController < ApplicationController
   end
 
   def index
-    # @books = Book.left_joins(:favorites).group(:book_id).order("count(user_id)desc")
-    @books = Book.all
-    UserMailer.welcome_email.deliver_later
+    @q = Book.ransack(params[:q])
+    @books = @q.result(distinct: true)
+
+
     # ソート機能
-    @method = "new"
-    @method = params[:method]
-      if @method == "new"
-    		@books = Book.all.order(created_at: "desc")
-    	elsif @method == "rate"
-    		@books = Book.all.order(rate: "desc")
-    	else
-  	  	now = Time.current
-  	  	from = now.ago(6.day)
-  	  	# book_idがfa
-  	  	@books = Book.includes(:fav_users).
-  	  		sort{|a,b|
-  	  					b.fav_users.includes(:favorites).where(created_at: from...now).size <=>
-  	  					a.fav_users.includes(:favorites).where(created_at: from...now).size
-  	  		}
-  	  end
+    # @method = "new"
+    # @method = params[:method]
+    #   if @method == "new"
+    # 		@books = Book.all.order(created_at: "desc")
+    # 	elsif @method == "rate"
+    # 		@books = Book.all.order(rate: "desc")
+    # 	else
+  	 # 	now = Time.current
+  	 # 	from = now.ago(6.day)
+  	 # 	# book_idがfa
+  	 # 	@books = Book.includes(:fav_users).
+  	 # 		sort{|a,b|
+  	 # 					b.fav_users.includes(:favorites).where(created_at: from...now).size <=>
+  	 # 					a.fav_users.includes(:favorites).where(created_at: from...now).size
+  	 # 		}
+  	 # end
     @book = Book.new
   end
 
