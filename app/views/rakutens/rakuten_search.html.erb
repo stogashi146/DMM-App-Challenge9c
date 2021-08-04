@@ -1,0 +1,20 @@
+<div class="container">
+    <%= form_with url: rakutens_rakuten_search_path(params[:keyword]), method: :get, local:true do |f| %>
+        <%= f.label :keyword, "キーワード検索" %>
+        <%= f.text_field :keyword %>
+        <%= f.submit "検索" %>
+    <% end %>
+    <div class="col-10">
+        <% if @items.present? %>
+            <% @items.each do |item| %>
+            <div class="row d-flex flex-wrap">
+                <div class="col-3">
+                    <%= link_to  "#{item.item_url}" do %>
+                        <%= image_tag item.large_image_url, :width => '130%', :height => '130%' %>
+                    <% end %>
+                </div>
+            </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>
