@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'google_books/new'
   get 'rakutens/rakuten_search'
   # resources :users,only: [:show,:index]
   root to: 'homes#top'

@@ -81,3 +81,4 @@ gem 'omniauth-facebook'
 gem 'dotenv-rails'
 
 gem 'rakuten_web_service'
+gem "googlebooks"
